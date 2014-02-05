@@ -9,8 +9,7 @@ module.exports = function(apiKey) {
 		return stripe.charges.create({
 			amount: INmoneyInCents,
 			currency: "usd",
-			card: INcard,
-			description: "Buying 3D-printed objects"
+			card: INcard
 		})
 	}
 
