@@ -1,24 +1,24 @@
-﻿var stripe = require("stripe")(INSERT_API_KEY_HERE)
+﻿// Joseph Dykstra
+// 2014-02-03
 
-//INerrFunc needs args [err]
-function chargeCreate(INmoneyInCents, INcard, INerrFunc) {
-	var temp = stripe.charges.create({
-		amount: INmoneyInCents,
-		currency: "usd",
-		card: INcard,
-		description: "Buying 3D-printed objects"
-	})
-	if (typeof temp !== "object")
-		INerrFunc(temp)
-	else
+//Constructor
+module.exports = function(apiKey) {
+	var stripe = require("stripe")(apiKey)
 	
-}
+	this.chargeCreate = function(INmoneyInCents, INcurrency, INcard) {
+		return stripe.charges.create({
+			amount: INmoneyInCents,
+			currency: "usd",
+			card: INcard,
+			description: "Buying 3D-printed objects"
+		})
+	}
 
-//INfunc needs args [err], [charge]
-function chargeCapture(INid, INfunc) {
-	stripe.charges.capture(INid, INfunc)
-}
+	this.chargeCapture = function(INid, INfunc) {
+		stripe.charges.capture(INid, INfunc)
+	} //INfunc needs args [err], [charge]
 
-function chargeDetails(INid) {
-	return stripe.charges.retrieve({id: INid})
+	this.chargeDetails = function(INid) {
+		return stripe.charges.retrieve({id: INid})
+	}
 }
