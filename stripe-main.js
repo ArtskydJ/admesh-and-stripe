@@ -5,11 +5,11 @@
 module.exports = function(apiKey) {
 	var stripe = require("stripe")(apiKey)
 	
-	this.chargeCreate = function(INmoneyInCents, INcurrency, INcard) {
+	this.chargeCreate = function(moneyInCents, currency, card) {
 		return stripe.charges.create({
-			amount: INmoneyInCents,
-			currency: "usd",
-			card: INcard
+			amount: moneyInCents,
+			currency: currency,
+			card: card
 		})
 	}
 
