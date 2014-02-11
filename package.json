@@ -1,0 +1,31 @@
+{
+  "name": "payment-method-stripe",
+  "version": "0.1",
+  "main": "./stripe-main.js",
+  "author": {
+    "name": "ArtskydJ",
+    "email": "josephdykstra@gmail.com"
+  },
+  "description": "n/a",
+  "keywords": [
+    "stripe",
+	"credit card",
+    "charger factory"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtskydJ/payment-method-stripe.git"
+  },
+  "devDependencies": {
+    "tap": "~0.4.8"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap ./test/*.js"
+  },
+  "dependencies": {
+    "stripe": "~2.4.1"
+  }
+}
