@@ -2,7 +2,7 @@
 // 2014-02-03
 
 //Constructor
-module.exports = function(apiKey) {
+module.exports = function SimpleStripeWrapper(apiKey) {
 	var stripe = require("stripe")(apiKey)
 	return {
 		charge: function charge(desc, amount, object, cbGood, cbErr) { //takes 4 or 5 args
