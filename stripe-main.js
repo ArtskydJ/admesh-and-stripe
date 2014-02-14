@@ -4,7 +4,6 @@
 //Constructor
 module.exports = function SimpleStripeWrapper(apiKey) {
 	var stripe = require("stripe")(apiKey)
-<<<<<<< HEAD
 	return {
 		charge: function charge(desc, amount, object, cbGood, cbErr) { //takes 4 or 5 args
 			object.description = desc
@@ -36,14 +35,5 @@ module.exports = function SimpleStripeWrapper(apiKey) {
 		},
 		
 		id: "stripe"
-=======
-	
-	this.chargeCreate = function(neccessaryInformation) {
-		return stripe.charges.create(neccessaryInformation)
-	}
-
-	this.chargeDetails = function(INid) {
-		return stripe.charges.retrieve({id: INid})
->>>>>>> 2f0c45f3169555045414e9fa5df202de4016be85
 	}
 }
