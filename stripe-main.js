@@ -9,7 +9,7 @@ module.exports = function SimpleStripeWrapper(apiKey) {
 			object.description = desc
 			object.currency = "usd"
 			object.amount = amount
-			if (typeof cbErr === "function") {		//TEST MODE (append cbErr)
+			if (typeof cbErr === "function") {		//TEST MODE (include cbErr)
 				stripe.charges.create(object).then(
 					function(goodObj) { cbGood(goodObj.id) },
 					cbErr
@@ -22,12 +22,9 @@ module.exports = function SimpleStripeWrapper(apiKey) {
 			}
 		}, // cbErr(err)   cbGood(uniqueId)
 
-		details: function details(INid, cbGood, cbError) { //must take all 3
+		details: function details(INid, cb) { //must take all 3
 			if (typeof INid !== 'undefined' && INid !== "") {
-				stripe.charges.retrieve(INid).then(
-					cbGood,
-					cbError
-				)
+				stripe.charges.retrieve(INid).then(cb, cb)
 			} else {
 				cbError({
 					type: 'StripeInvalidRequest_details',
