@@ -1,23 +1,23 @@
 var test = require('tap').test
-var Stripe = require('../index.js')
+var Stripe = require('../stripe.js')
 
 test('id is a string and correct', function(t) {
-	var mock = new Mock()
+	var stripe = new Stripe()
 
-	t.equal(typeof mock.id, 'string')
-	t.equal(mock.id, 'mock')
+	t.equal(typeof stripe.id, 'string')
+	t.equal(stripe.id, 'stripe')
 
 	t.end()
 })
 
 test('The charge function is a reasonable facsimile of a real charge function', function(t) {
-	var mock = new Mock()
+	var stripe = new Stripe()
 
 	t.plan(4)
 
-	t.equal(typeof mock.charge, 'function', 'has a charge function')
+	t.equal(typeof stripe.charge, 'function', 'has a charge function')
 
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, function callback(err, success, id) {
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, function callback(err, success, id) {
 		t.notOk(err, 'no error given to callback')
 		t.ok(success, 'transaction was successful')
 		t.equal(typeof id, 'string', 'id is a string')
@@ -27,7 +27,7 @@ test('The charge function is a reasonable facsimile of a real charge function', 
 })
 
 test("A different id comes back for multiple calls", function(t) {
-	var mock = new Mock()
+	var stripe = new Stripe()
 
 	t.plan(5)
 
@@ -38,10 +38,10 @@ test("A different id comes back for multiple calls", function(t) {
 		ids[id] = true
 	}
 
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
-	mock.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
+	stripe.charge("This is a test", 13.13, { nothing: 'whatever' }, callback)
 })
 
