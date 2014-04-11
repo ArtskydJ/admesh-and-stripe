@@ -1,6 +1,6 @@
 {
   "name": "payment-method-stripe",
-  "version": "0.1",
+  "version": "0.1.0",
   "main": "./stripe-main.js",
   "author": {
     "name": "ArtskydJ",
